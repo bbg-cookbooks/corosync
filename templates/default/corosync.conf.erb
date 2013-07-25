@@ -1,0 +1,43 @@
+# Please read the corosync.conf.5 manual page
+compatibility: none
+
+totem {
+  version: 2
+  nodeid: <%= node['hostname'] %>
+  secauth: on
+  threads: 4
+  interface {
+  <% node['corosync']['members'].each do |member| %>
+    member {
+      memberaddr: <%= member %>
+    }
+  <% end %>
+    ringnumber: 0
+    bindnetaddr: <%= node['corosync']['bindnetaddr'] %>
+    netmask: 255.255.255.0
+    mcastport: 5405
+    ttl: 1
+  }
+  token: 5000
+  token_retransmits_before_loss_const: 20
+  join: 1000
+  consensus: 10000
+  transport: udpu
+}
+
+logging {
+  fileline: off
+  to_stderr: no
+  to_logfile: no
+  to_syslog: yes
+  debug: off
+  timestamp: on
+  logger_subsys {
+    subsys: AMF
+    debug: off
+  }
+}
+
+amf {
+  mode: disabled
+}

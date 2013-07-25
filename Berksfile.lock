@@ -1,0 +1,13 @@
+{
+  "sources": {
+    "corosync": {
+      "path": "."
+    },
+    "apt": {
+      "locked_version": "1.9.2"
+    },
+    "yum": {
+      "locked_version": "2.3.0"
+    }
+  }
+}

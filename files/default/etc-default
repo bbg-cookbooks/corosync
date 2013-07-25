@@ -1,0 +1,2 @@
+# enable corosync init script
+START=yes
