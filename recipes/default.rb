@@ -21,8 +21,8 @@ template "/etc/corosync/corosync.conf" do
   source "corosync.conf.erb"
 end
 
-case node['platform']
-when 'ubuntu'
+case node['platform_family']
+when 'debian'
   # thanks, I really wanted to edit a file to make the init script usable
   cookbook_file '/etc/default/corosync' do
     source 'etc-default'

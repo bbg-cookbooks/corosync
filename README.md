@@ -18,10 +18,10 @@ Add all the members to `default['corosync']['members']` and set each
 
 ## Testing
 
-The tests depend on both defined nodes being up, since they test that both members have joined. To ensure both nodes are converged before verify, you can do all the steps in order:
+The tests depend on all defined nodes being up, since it checks that members have joined. To ensure nodes are converged before verify, you can do all the steps in order:
 
 ```bash
-for i in create setup converge verify; do kitchen $i all; done
+kitchen converge && kitchen verify
 ```
 
 Contributing

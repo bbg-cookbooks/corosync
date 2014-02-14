@@ -1,28 +1,32 @@
 ---
 driver_plugin: vagrant
 driver_config:
-  require_chef_omnibus: "11.4.4"
+  require_chef_omnibus: true
 
 platforms:
 - name: ubuntu-12.04
   driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
     network:
       private_network: "ip: '10.30.0.11'"
   run_list: ["recipe[apt]"]
   attributes:
     corosync:
       bindnetaddr: '10.30.0.11'
-- name: centos-6.4
+- name: centos-6.5
   driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
     network:
       private_network: "ip: '10.30.0.12'"
   attributes:
     corosync:
       bindnetaddr: '10.30.0.12'
+- name: debian-7.1
+  driver_config:
+    network:
+      private_network: "ip: '10.30.0.13'"
+  run_list: ["recipe[debian]"]
+  attributes:
+    corosync:
+      bindnetaddr: '10.30.0.13'
 
 suites:
 - name: default
@@ -32,5 +36,6 @@ suites:
       members:
       - '10.30.0.11'
       - '10.30.0.12'
+      - '10.30.0.13'
   data_bags_path: 'test/integration/data_bags'
   encrypted_data_bag_secret_key_path: 'test/integration/encrypted_data_bag_secret'

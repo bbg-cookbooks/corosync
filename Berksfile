@@ -2,5 +2,8 @@ site :opscode
 
 metadata
 
-cookbook 'apt', group: :integration
-cookbook 'yum', group: :integration
+group :integration do
+  cookbook 'apt', '>= 2.0'
+  cookbook 'debian'
+  cookbook 'yum'
+end

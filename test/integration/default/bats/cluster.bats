@@ -5,7 +5,8 @@
   [ "${output%% *}" = "fd22d4014a6f0c260a788d225d6dc24d" ]
 }
 
-@test "both members joined cluster" {
-  corosync-objctl | grep members | grep '10\.30\.0\.11'
-  corosync-objctl | grep members | grep '10\.30\.0\.12'
+@test "all members joined cluster" {
+  /usr/sbin/corosync-objctl | grep members | grep '10\.30\.0\.11'
+  /usr/sbin/corosync-objctl | grep members | grep '10\.30\.0\.12'
+  /usr/sbin/corosync-objctl | grep members | grep '10\.30\.0\.13'
 }
