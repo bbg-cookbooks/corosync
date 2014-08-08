@@ -1,7 +1,7 @@
 # Please read the corosync.conf.5 manual page
 totem {
   version: 2
-  nodeid: <%= node['nodeid'] || node['hostname'] %>
+  nodeid: <%= node['corosync']['nodeid'] || node['hostname'].gsub(/\D/, '') %>
   secauth: on
   threads: 4
   interface {
