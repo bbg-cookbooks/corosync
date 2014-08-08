@@ -9,12 +9,17 @@ Create a 1024-bit authkey and get its base64 value so it can be placed in an enc
 
 From an existing authkey, e.g.: `openssl base64 < /etc/corosync/authkey | tr -d '\n'`
 
-Or generate your own: `openssl rand 128 -base64 | tr -d '\n'`
+Or generate your own: `dd if=/dev/urandom bs=128 count=1 | openssl base64 | tr -d '\n'`
 
 It will be pulled from `data_bag_item('keys', 'corosync')['authkey']`.
 
-Add all the members to `default['corosync']['members']` and set each
+### Corosync 1.x
+Add all the members to `default['corosync']['members']` array and set each
 `node['corosync']['bindnetaddr']` to the IP to bind to.
+
+### Corosync 2.x
+Add all the members as `nodeid => address` pairs do `default['corosync']['members']` hash
+and set `node['corosync']['bindnetaddr']` and `node['corosync']['nodeid']` for each node.
 
 ## Testing
 
