@@ -2,7 +2,7 @@
 # Cookbook Name:: cluster
 # Recipe:: default
 #
-# Copyright 2013, Blue Box Group, Inc.
+# Copyright 2013, 2014 Blue Box Group, Inc.
 #
 
 package "corosync"
@@ -18,7 +18,8 @@ template "/etc/corosync/authkey" do
 end
 
 template "/etc/corosync/corosync.conf" do
-  source "corosync.conf.erb"
+  source node['corosync']['version'] == 1 ? 'corosync.conf.erb' : 'corosync-2.conf.erb'
+  notifies :restart, 'service[corosync]'
 end
 
 case node['platform_family']
