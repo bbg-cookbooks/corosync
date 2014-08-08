@@ -19,6 +19,7 @@ end
 
 template "/etc/corosync/corosync.conf" do
   source node['corosync']['version'] == 1 ? 'corosync.conf.erb' : 'corosync-2.conf.erb'
+  notifies :restart, 'service[corosync]'
 end
 
 case node['platform_family']
