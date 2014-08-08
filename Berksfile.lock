@@ -1,16 +1,14 @@
-{
-  "sources": {
-    "corosync": {
-      "path": "."
-    },
-    "apt": {
-      "locked_version": "2.1.1"
-    },
-    "debian": {
-      "locked_version": "1.5.4"
-    },
-    "yum": {
-      "locked_version": "2.3.0"
-    }
-  }
-}
+DEPENDENCIES
+  apt (>= 2.0.0)
+  corosync
+    path: .
+    metadata: true
+  debian
+  yum
+
+GRAPH
+  apt (2.4.0)
+  corosync (0.1.1)
+  debian (1.6.0)
+    apt (>= 1.6.0)
+  yum (3.2.2)
