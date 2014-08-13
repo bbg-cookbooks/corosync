@@ -38,3 +38,10 @@ logging {
     debug: off
   }
 }
+
+quorum {
+  provider: corosync_votequorum
+<% if node['corosync']['members'].size == 2 %>
+  two_node: 1
+<% end %>
+}
